@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Viewer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/style.css">    
+</head>
+
+<body>
+    <div class="d-flex flex-row vh-100 vw-100 ">
+
+        <nav class="w-25 h-100 bg-body-tertiary" data-bs-theme="dark">
+            <div class="bg-dark h-100 w-100  flex-column overflow-hidden">
+                <a class="navbar-brand m-3 d-block">
+                    <span class="d-sm-inline">Leitor Online</span>
+                </a>
+                    <ul class="navbar-nav m-3 flex-column">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="_select.html">Read</a>
+                        </li>
+                    </ul>
+                    <div class="container">
+                        <ul class="" style="list-style-type: none;">
+                            <li class="">Hotkeys:</li>
+                            <li class="">- SHIFT + D = Next Page</li>
+                            <li class="">- SHIFT + A = Previous Page</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                
+            </div>
+        </nav>
+
+        
+        <div class="cointaner w-75 h-100 " >
+            <div class="btn-group w-100" aria-label="Basic example" >
+                <button class="col col-lg-2 btn btn-dark" id="prevPage" disabled>Previous</button>
+                <span class="col col-lg-5 bg-dark text-center p-1" id="pageInfo">Page 1 of 1</span>
+                <button  class="col col-lg-2 btn btn-dark" id="nextPage" disabled>Next</button>
+            </div>
+            
+            <div class="container-fluid h-90 p-2" id="">
+                <div id="fileContent">             
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/scripts/displayFileText.js"></script>
+
+    <script>
+        // let telaLeitura = document.getElementById('fileContent');
+        // window.onresize = function printarTeste(){
+        //     console.log('Tamanho atual da pagina:', window.innerHeight);
+        //     console.log('Tamanho atual do bloco de leitura:', telaLeitura.innerHeight);
+
+        // };
+
+    </script>
+    
+</body>
+</html>
