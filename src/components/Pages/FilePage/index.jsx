@@ -18,7 +18,6 @@ function FilePage () {
         }
     }
     
-    
     return (
         <main className="min-h-screen min-w-screen">
             <div className="h-screen text-white font-semibold flex items-center justify-center pb-36">

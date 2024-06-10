@@ -1,122 +1,137 @@
 /* eslint-disable no-unused-vars */
+import { useEffect, useRef } from "react";
+
 function ReaderPage() {
+  const fileContentRef = useRef(null);
+  const prevPageBtnRef = useRef(null);
+  const nextPageBtnRef = useRef(null);
+  const pageInfoRef = useRef(null);
 
-    const fileContent = document.getElementById('fileContent');
-    const prevPageBtn = document.getElementById('prevPage');
-    const nextPageBtn = document.getElementById('nextPage');
-    const pageInfo = document.getElementById('pageInfo');
+  var fileToRead = " ";
+  let currentPage = 1;
+  const linesPerPage = 21;
 
+  function showPage(pageNumber) {
+    if (fileContentRef.current) {
+      fileContentRef.current.innerHTML = "";
+      const start = (pageNumber - 1) * linesPerPage;
+      const end = start + linesPerPage;
+      const lines = fileToRead.split("\n");
 
-    var fileToRead = "";
-    let content = '';
-    let currentPage = 1;
-    let linesPerPage = 21;
+      for (let i = start; i < end && i < lines.length; i++) {
+        fileContentRef.current.innerHTML += `<p>${lines[i]}</p>`;
+      }
 
-    let lineToLoad = function getLine(){
-        let line = '';
-        
-        
-        return line;
+      if (pageInfoRef.current) {
+        pageInfoRef.current.textContent = `Page ${pageNumber} of ${Math.ceil(
+          lines.length / linesPerPage
+        )}`;
+      }
+
+      if (nextPageBtnRef.current) {
+        nextPageBtnRef.current.removeAttribute("disabled");
+      }
+    }
+  }
+
+  function getNextPage() {
+    if (currentPage >= Math.ceil(fileToRead.split("\n").length / linesPerPage)) {
+      if (nextPageBtnRef.current) {
+        nextPageBtnRef.current.disabled = true;
+      }
+    } else {
+      currentPage++;
+      showPage(currentPage);
+      if (prevPageBtnRef.current) {
+        prevPageBtnRef.current.removeAttribute("disabled");
+      }
+    }
+  }
+
+  function getPrevPage() {
+    if (currentPage <= 1) {
+      if (prevPageBtnRef.current) {
+        prevPageBtnRef.current.disabled = true;
+      }
+    } else {
+      currentPage--;
+      showPage(currentPage);
+      if (nextPageBtnRef.current) {
+        nextPageBtnRef.current.removeAttribute("disabled");
+      }
+    }
+  }
+
+  function handleHotkeys(event) {
+    if ((event.shiftKey && event.key === "D") || (event.shiftKey && event.key === "d")) {
+      console.log("Shift + D pressed");
+      getNextPage();
     }
 
-
-    function showPage(pageNumber) {
-        fileContent.innerHTML = '';
-        const start = (pageNumber - 1) * linesPerPage;
-        const end = start + linesPerPage;
-        
-        for (let i = start; i < end && i < fileToRead.split('\n').length; i++) {
-            // let pageContent =  
-            // console.log('Length result:', fileToRead.split('\n').length);
-            // console.log('')
-            
-            console.log(`${fileToRead.split('\n')[i]}`);
-            // fileContent.innerHTML += `${fileToRead.split('\n')[i]}`;
-            fileContent.innerHTML += `<p>${fileToRead.split('\n')[i]}<p>`;
-        }
-        
-        pageInfo.textContent = `Page ${pageNumber} of ${Math.ceil(fileToRead.split('\n').length / linesPerPage)}`;
-        
-        nextPageBtn.removeAttribute('disabled');
+    if ((event.shiftKey && event.key === "A") || (event.shiftKey && event.key === "a")) {
+      console.log("Shift + A pressed");
+      getPrevPage();
     }
+  }
 
-    function getNextPage(content) {
-        if (currentPage >= Math.ceil(fileToRead.split('\n').length / linesPerPage)) {
-            nextPageBtn.disabled = true;
-        } else {
-            currentPage++;
-            showPage(currentPage);
-            prevPageBtn.removeAttribute('disabled');
-        }
+  useEffect(() => {
+    fileToRead = sessionStorage.getItem("file");
+    console.log(fileToRead);
+    showPage(currentPage);
+
+    window.addEventListener("keydown", handleHotkeys);
+
+    if (nextPageBtnRef.current) {
+      nextPageBtnRef.current.addEventListener("click", getNextPage);
     }
-
-    function getPrevPage() {
-        if (currentPage <= 1) {
-            prevPageBtn.disabled = true;
-        } else {
-            currentPage--;
-            showPage(currentPage);
-            nextPageBtn.removeAttribute('disabled');
-        }
+  
+    if (prevPageBtnRef.current) {
+      prevPageBtnRef.current.addEventListener("click", getPrevPage);
     }
+  
+    return () => {
+      if (nextPageBtnRef.current) {
+        nextPageBtnRef.current.removeEventListener("click", getNextPage);
+      }
+  
+      if (prevPageBtnRef.current) {
+        prevPageBtnRef.current.removeEventListener("click", getPrevPage);
+      }
+      window.removeEventListener("keydown", handleHotkeys);
+    };
+  }, []);
 
-    function handleHotkeys(event) {
-        if (event.shiftKey && event.key == 'D' || event.shiftKey && event.key == 'd') {
-            console.log('Shift + D pressed');
-            getNextPage();
-        } 
-        
-        if (event.shiftKey && event.key == 'A' || event.shiftKey && event.key == 'a'){
-            console.log('Shift + A pressed');
-            getPrevPage();
-        }
-        
-    }
+  useEffect(() => {
+  }, []);
 
+  return (
+    <div className="flex flex-col sm:ml-64 text-white h-screen">
+      <div className="flex flex-row bg-jackobean divide-x divide-cadet-gray sticky top-0">
+        <button className="flex-1 justify-center py-2 dark:hover:bg-slate-800" ref={prevPageBtnRef} disabled>
+          Previous
+        </button>
+        <span className="flex-1 justify-center text-center py-2" ref={pageInfoRef}>
+          Page 1 of 1
+        </span>
+        <button className="flex-1 justify-center py-2 dark:hover:bg-slate-800" ref={nextPageBtnRef} disabled>
+          Next
+        </button>
+      </div>
 
-    window.addEventListener('load', () => {
-        fileToRead = sessionStorage.getItem('file');
-        
-        showPage(currentPage, fileToRead);
-
-    });
-
-    fileContent.addEventListener('change', () => {
-        
-    })
-
-    nextPageBtn.addEventListener('click', getNextPage);
-    // nextPageBtn.addEventListener('keyup', getNextPage);
-
-    prevPageBtn.addEventListener('click', getPrevPage);
-
-
-    window.addEventListener('keydown',handleHotkeys);
-
-
-    return( 
-        <div className="flex flex-col sm:ml-64 text-white h-screen font-mono">
-           
-            <div className="flex flex-row bg-jackobean divide-x divide-cadet-gray sticky top-0">
-                <button className="flex-1 justify-center py-2 dark:hover:bg-slate-800" id="prevPage" disabled>Previous</button>
-                <span className="flex-1 justify-center text-center py-2" id="pageInfo">Page 1 of 1</span>
-                <button className="flex-1 justify-center py-2 dark:hover:bg-slate-800" id="nextPage" disabled>Next</button>
-            </div>
-            
-            <div className="flex flex-1 justify-center bg-dimgray py-2 border-1" id="">
-                <div className="
-                    px-4 
-                    text-2xl bg-dimgray
-                    text-neutral-50
-                    whitespace-pre-line font-medium 
-                    tracking-normal leading-snug
-                    shadow-lg shadow-taupe
-                    " id="fileContent">
-                </div>
-            </div>
-
-        </div>
-    );
+      <div className="flex flex-1 justify-center bg-rosetaupe py-2 border-1">
+        <div
+          className="px-4 text-2xl 
+          bg-rosetaupe text-neutral-50 
+          whitespace-pre-line font-medium 
+          tracking-normal leading-snug 
+          shadow-lg shadow-taupe
+          max-w-4xl
+          "
+          ref={fileContentRef}
+        ></div>
+      </div>
+    </div>
+  );
 }
 
 export default ReaderPage;
