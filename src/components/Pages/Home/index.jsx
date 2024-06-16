@@ -14,7 +14,7 @@ function Home() {
                         A website developed to improve the reading experience on your own computer.
                     </h2>
                     <div className="py-2">
-                        <Link to="/selectfile" className="px-6 py-2 bg-dimgray shadow-lg shadow-dimgray border-2 rounded-lg border-dimgray">
+                        <Link to="/selectfile" className="px-6 py-2 bg-rosetaupe shadow-lg shadow-rosetaupe border-2 rounded-lg border-rosetaupe">
                             <span className="text-xl font-semibold leading-6 text-white">Start now</span>
                         </Link>
                     </div>

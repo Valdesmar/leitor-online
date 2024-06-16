@@ -30,9 +30,9 @@ function FilePage () {
                                 file:mr-4 file:py-2 file:p-4
                                 file:rounded-full file:border-0
                                 file:text-lg file:font-semibold
-                                file:bg-dimgray file:text-white
-                                hover:file:bg-dimgray
-                                shadow-lg shadow-dimgray
+                                file:bg-rosetaupe file:text-white
+                                hover:file:bg-rosetaupe
+                                shadow-lg shadow-rosetaupe
                             " id="arquivo"/>
                     </div>
 

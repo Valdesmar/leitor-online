@@ -1,0 +1,3 @@
+p:empty::before {
+    content: '\00a0'; /* Non-breaking space */
+}
