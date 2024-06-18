@@ -7,8 +7,7 @@ import Home from './components/Pages/Home';
 import FilePage from './components/Pages/FilePage';
 import NavVertical from './components/NavVertical';
 import ReaderPage from './components/Pages/ReaderPage';
-// import Sidebar from './components/SideBar';
-// import './App.css';
+
 
 function App() {
   return (
@@ -36,7 +35,6 @@ function App() {
         path="/readpage" 
         element={ 
           <>
-            <NavVertical />
             <ReaderPage/>
           </> 
         } 
