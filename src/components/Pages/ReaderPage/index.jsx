@@ -105,8 +105,8 @@ function ReaderPage() {
 
 
 	return (
-		<div className="flex flex-row h-screen">
-			<NavVertical className=" "></NavVertical>
+		<div className="flex flex-row min-h-screen">
+			<NavVertical className=""></NavVertical>
 			<div className="text-white w-full">
 				<div className="flex flex-row bg-jackobean divide-x divide-cadet-gray sticky top-0">
 					<button className="flex-1 justify-center py-2 dark:hover:bg-slate-800" ref={prevPageBtnRef} disabled>
@@ -127,6 +127,7 @@ function ReaderPage() {
 					whitespace-pre-line font-medium 
 					tracking-normal
 					shadow-lg shadow-taupe
+					text-wrap
 					max-w-4xl
 					"
 					ref={fileContentRef}
