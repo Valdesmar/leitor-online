@@ -1,19 +1,35 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import Modal from "../Modal";
 
-function NavVertical() {
+function NavVertical({ BgColor, changeBgColor}) {
     const [isOpen, setIsOpen] = useState(false);
-    const [BgColor, setBgColor] = useState('bg-jackobean');
-    
+
     const toggleSidebar = () => {
         setIsOpen(!isOpen);
     };
 
-    const changeBgColor = async (newBgColor) => {
-        console.log(`The new BgColor is: ${BgColor}`);
-        setBgColor(newBgColor);
+    const [isFirstModalOpen, setIsFirstModalOpen] = useState(false);
+    const [isSecondModalOpen, setIsSecondModalOpen] = useState(false);
+  
+    const openFirstModal = () => {
+      setIsFirstModalOpen(true);
     };
+  
+    const closeFirstModal = () => {
+      setIsFirstModalOpen(false);
+    };
+  
+    const openSecondModal = () => {
+      setIsSecondModalOpen(true);
+    };
+  
+    const closeSecondModal = () => {
+      setIsSecondModalOpen(false);
+    };
+
 
     return (
         <>
@@ -34,50 +50,90 @@ function NavVertical() {
                                 </Link>
                                 <ul className="space-y-2 font-medium">
                                     <li>
-                                        <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                            <span className="ms-3">Home</span>
+                                        <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                            </svg>
+                                            <span className="flex-1 ms-3">Home</span>
                                         </Link>
                                     </li>
                                     <li>
-                                        <Link to="/selectfile" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                            <span className="flex-1 ms-3 whitespace-nowrap">Read</span>
+                                        <Link to="/selectfile" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-5">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25m2.25 0H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z" />
+                                            </svg>
+
+                                            <span className="flex-1 ms-3">Read</span>
                                         </Link>
                                     </li>
                                     <li>
-                                        <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
-                                            <span className="flex-1 ms-3 whitespace-nowrap">Hotkeys:</span>
+                                        <div onClick={openSecondModal} 
+                                            className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group"
+                                            role="button">
+                                                {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-5">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
+                                                </svg> */}
+
+                                                <span className="flex-1 ms-3">Hotkeys</span>
                                         </div>
+                                        <Modal isOpen={isFirstModalOpen} onClose={closeFirstModal} BgColor={BgColor}>
+                                            <h2 className="text-xl font-bold mb-4">Hotkeys</h2>
+                                            {/* <p className="mb-4">Choose the theme you want to use</p> */}
+                                            <ul>
+                                                <li>
+                                                    <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
+                                                        <span className="flex-1 ms-3 whitespace-nowrap">Shift+D=Next Page</span>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
+                                                        <span className="flex-1 ms-3 whitespace-nowrap">Shift+A=Previous Page</span>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <button
+                                                onClick={closeFirstModal}
+                                                className="px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700"
+                                            >
+                                            Close
+                                            </button>
+                                        </Modal>
                                     </li>
                                     <li>
-                                        <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
-                                            <span className="flex-1 ms-3 whitespace-nowrap">Shift+D=Next Page</span>
+                                        <div onClick={openSecondModal} 
+                                            className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group"
+                                            role="button"
+                                            >
+                                                <span className="flex-1 ms-3 whitespace-nowrap">Themes</span>
                                         </div>
-                                    </li>
-                                    <li>
-                                        <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
-                                            <span className="flex-1 ms-3 whitespace-nowrap">Shift+A=Previous Page</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
-                                            <span className="flex-1 ms-3 whitespace-nowrap">BgColor Schemes:</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
-                                            <button onClick={() => changeBgColor('bg-jackobean')} className="flex-1 ms-3 whitespace-nowrap">-Brownish</button>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group">
-                                            <button onClick={() => changeBgColor('bg-neutral-950')} className="flex-1 ms-3 whitespace-nowrap">-Dev</button>
-                                        </div>
+                                        <Modal isOpen={isSecondModalOpen} onClose={closeSecondModal} BgColor={BgColor}>
+                                            <h2 className="text-xl font-bold mb-4">Themes</h2>
+                                            {/* <p className="mb-4">Choose the theme you want to use</p> */}
+                                            <ul>
+                                                <li>
+                                                    <button onClick={() => changeBgColor('bg-jackobean')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
+                                                        <span className="flex-1 ms-3 whitespace-nowrap">-Tema 1</span>
+                                                    </button>
+                                                </li>
+                                                <li>
+                                                    <button onClick={() => changeBgColor('bg-neutral-950')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
+                                                        <span className="flex-1 ms-3 whitespace-nowrap">-Tema 2</span>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                            <button
+                                                onClick={closeSecondModal}
+                                                className="px-4 py-2 bg-red-600 text-white rounded-lg shadow-md hover:bg-red-700"
+                                            >
+                                            Close
+                                            </button>
+                                        </Modal>
                                     </li>
                                 </ul>
 
                             </div>
                             <button onClick={toggleSidebar} className={`  ${BgColor}`}>
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor"
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white"
                                     className="size-10 place-items-end">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
                                 </svg>
@@ -87,7 +143,7 @@ function NavVertical() {
                 // Closed
                 <button onClick={toggleSidebar} className={`  ${BgColor}`}>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" 
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" 
                     className="size-10 place-items-end">
                         <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>

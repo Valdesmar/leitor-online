@@ -1,9 +1,11 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import './styles.css';
 import NavVertical from "../../NavVertical";
 
 function ReaderPage() {
+	const [BgColor, setBgColor] = useState('bg-jackobean');
+
 	const fileContentRef = useRef(null);
 	const prevPageBtnRef = useRef(null);
 	const nextPageBtnRef = useRef(null);
@@ -12,6 +14,11 @@ function ReaderPage() {
 	var fileToRead = " ";
 	let currentPage = 1;
 	const linesPerPage = 21;
+
+	const changeBgColor = async (newBgColor) => {
+        console.log(`The new BgColor is: ${BgColor}`);
+        setBgColor(newBgColor);
+    };
 
 	function showPage(pageNumber) {
 		if (fileContentRef.current) {
@@ -78,7 +85,6 @@ function ReaderPage() {
 
 	useEffect(() => {
 		fileToRead = sessionStorage.getItem("file");
-		console.log(fileToRead);
 		showPage(currentPage);
 
 		window.addEventListener("keydown", handleHotkeys);
@@ -105,30 +111,30 @@ function ReaderPage() {
 
 
 	return (
-		<div className="flex flex-row min-h-screen">
-			<NavVertical className=""></NavVertical>
-			<div className="text-white w-full">
-				<div className="flex flex-row bg-jackobean divide-x divide-cadet-gray sticky top-0">
-					<button className="flex-1 justify-center py-2 dark:hover:bg-slate-800" ref={prevPageBtnRef} disabled>
+		<div className="flex flex-row size-full min-h-screen">
+			<NavVertical BgColor={BgColor} changeBgColor={changeBgColor} className="text-red"></NavVertical>
+			<div className="flex flex-col text-white w-full font-medium ">
+				<div className={`flex flex-row ${BgColor} divide-x divide-cadet-gray sticky top-0`}>
+					<button className="flex-1 justify-center py-2 dark:hover:bg-chamoisee" ref={prevPageBtnRef} disabled>
 					Previous
 					</button>
 					<span className="flex-1 justify-center text-center py-2" ref={pageInfoRef}>
 					Page 1 of 1
 					</span>
-					<button className="flex-1 justify-center py-2 dark:hover:bg-slate-800" ref={nextPageBtnRef} disabled>
+					<button className="flex-1 justify-center py-2 dark:hover:bg-chamoisee" ref={nextPageBtnRef} disabled>
 					Next
 					</button>
 				</div>
 
-				<div className="flex flex-row justify-center bg-rosetaupe py-2 border-1 ">
+				<div className="flex flex-row justify-center bg-rosetaupe py-2 border-1 h-full">
 					<div
 					className="px-4 text-2xl 
-					bg-rosetaupe text-neutral-50 
-					whitespace-pre-line font-medium 
+					bg-rosetaupe
+					whitespace-pre-line font-light
 					tracking-normal
 					shadow-lg shadow-taupe
-					text-wrap
 					max-w-4xl
+					text-wrap
 					"
 					ref={fileContentRef}
 					></div>
