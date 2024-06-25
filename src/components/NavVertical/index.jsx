@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Modal from "../Modal";
 
-function NavVertical({ BgColor, changeBgColor}) {
+function NavVertical({ MyColor, changeMyColor}) {
     const [isOpen, setIsOpen] = useState(false);
 
     const toggleSidebar = () => {
@@ -39,7 +39,7 @@ function NavVertical({ BgColor, changeBgColor}) {
                             transition-transform transform 
                             ${ isOpen ? "translate-x-0 " : "-translate-x-3/4" }
                         `} >
-                        <div className={`flex-col flex-1 px-3 py-4 top-0 overflow-y-auto ${BgColor} dark:${BgColor} justify-center 
+                        <div className={`flex-col flex-1 px-3 py-4 top-0 overflow-y-auto ${MyColor.outerColorBG} dark:${MyColor.outerColorBG} justify-center 
                         `}>
                                 {/* transition-transform transform ${ isOpen ? "translate-x-0 " : "-translate-x-full" }  */}
                                 <Link to="/" className="flex items-center ps-2.5 mb-5">
@@ -73,10 +73,9 @@ function NavVertical({ BgColor, changeBgColor}) {
                                                 {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-5">
                                                     <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
                                                 </svg> */}
-
                                                 <span className="flex-1 ms-3">Hotkeys</span>
                                         </div>
-                                        <Modal isOpen={isFirstModalOpen} onClose={closeFirstModal} BgColor={BgColor}>
+                                        <Modal isOpen={isFirstModalOpen} onClose={closeFirstModal} MyColor={MyColor.outerColorBG}>
                                             <h2 className="text-xl font-bold mb-4">Hotkeys</h2>
                                             {/* <p className="mb-4">Choose the theme you want to use</p> */}
                                             <ul>
@@ -106,17 +105,25 @@ function NavVertical({ BgColor, changeBgColor}) {
                                             >
                                                 <span className="flex-1 ms-3 whitespace-nowrap">Themes</span>
                                         </div>
-                                        <Modal isOpen={isSecondModalOpen} onClose={closeSecondModal} BgColor={BgColor}>
+                                        <Modal isOpen={isSecondModalOpen} onClose={closeSecondModal} MyColor={MyColor.outerColorBG}>
                                             <h2 className="text-xl font-bold mb-4">Themes</h2>
                                             {/* <p className="mb-4">Choose the theme you want to use</p> */}
                                             <ul>
                                                 <li>
-                                                    <button onClick={() => changeBgColor('bg-jackobean')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
+                                                    <button onClick={() => changeMyColor({outerColorBG: "bg-jackobean", 
+                                                        innerColorBG: "bg-rosetaupe", 
+                                                        outerTextColor: "text-white", 
+                                                        innerTextColor: "text-white"
+                                                        })} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
                                                         <span className="flex-1 ms-3 whitespace-nowrap">-Tema 1</span>
                                                     </button>
                                                 </li>
                                                 <li>
-                                                    <button onClick={() => changeBgColor('bg-neutral-950')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
+                                                    <button onClick={() => changeMyColor({outerColorBG: "bg-neutral-950", 
+                                                        innerColorBG:"bg-neutral-50", 
+                                                        outerTextColor: "text-white", 
+                                                        innerTextColor: "text-neutral-950"
+                                                        })} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
                                                         <span className="flex-1 ms-3 whitespace-nowrap">-Tema 2</span>
                                                     </button>
                                                 </li>
@@ -132,7 +139,7 @@ function NavVertical({ BgColor, changeBgColor}) {
                                 </ul>
 
                             </div>
-                            <button onClick={toggleSidebar} className={`  ${BgColor}`}>
+                            <button onClick={toggleSidebar} className={`  ${MyColor.outerColorBG}`}>
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white"
                                     className="size-10 place-items-end">
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
@@ -141,7 +148,7 @@ function NavVertical({ BgColor, changeBgColor}) {
                     </div>
                 : 
                 // Closed
-                <button onClick={toggleSidebar} className={`  ${BgColor}`}>
+                <button onClick={toggleSidebar} className={`  ${MyColor.outerColorBG}`}>
 
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" 
                     className="size-10 place-items-end">

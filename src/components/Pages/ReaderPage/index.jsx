@@ -4,7 +4,19 @@ import './styles.css';
 import NavVertical from "../../NavVertical";
 
 function ReaderPage() {
-	const [BgColor, setBgColor] = useState('bg-jackobean');
+	const [MyColor, setMyColor] = useState({
+		outerColorBG: "bg-jackobean", 
+		innerColorBG: "bg-rosetaupe", 
+		outerTextColor: "text-white",
+		innerTextColor: "text-white",
+	});
+	
+	const changeMyColor = (newMyColor) => {
+		setMyColor((prevState) => ({
+			...prevState,
+			...newMyColor,
+		}));
+	};
 
 	const fileContentRef = useRef(null);
 	const prevPageBtnRef = useRef(null);
@@ -14,11 +26,6 @@ function ReaderPage() {
 	var fileToRead = " ";
 	let currentPage = 1;
 	const linesPerPage = 21;
-
-	const changeBgColor = async (newBgColor) => {
-        console.log(`The new BgColor is: ${BgColor}`);
-        setBgColor(newBgColor);
-    };
 
 	function showPage(pageNumber) {
 		if (fileContentRef.current) {
@@ -112,9 +119,9 @@ function ReaderPage() {
 
 	return (
 		<div className="flex flex-row size-full min-h-screen">
-			<NavVertical BgColor={BgColor} changeBgColor={changeBgColor} className="text-red"></NavVertical>
-			<div className="flex flex-col text-white w-full font-medium ">
-				<div className={`flex flex-row ${BgColor} divide-x divide-cadet-gray sticky top-0`}>
+			<NavVertical MyColor={MyColor} changeMyColor={changeMyColor} className="text-red"></NavVertical>
+			<div className={`flex flex-col ${MyColor.innerTextColor} w-full font-medium `}>
+				<div className={`flex flex-row ${MyColor.outerColorBG} ${MyColor.outerTextColor} divide-x divide-cadet-gray sticky top-0`}>
 					<button className="flex-1 justify-center py-2 dark:hover:bg-chamoisee" ref={prevPageBtnRef} disabled>
 					Previous
 					</button>
@@ -126,16 +133,15 @@ function ReaderPage() {
 					</button>
 				</div>
 
-				<div className="flex flex-row justify-center bg-rosetaupe py-2 border-1 h-full">
+				<div className={`flex flex-row justify-center py-2 ${MyColor.innerColorBG} ${MyColor.innerTextColor} border-1 h-full`}>
 					<div
-					className="px-4 text-2xl 
-					bg-rosetaupe
+					className={`px-4 text-2xl
 					whitespace-pre-line font-light
 					tracking-normal
 					shadow-lg shadow-taupe
 					max-w-4xl
 					text-wrap
-					"
+					`}
 					ref={fileContentRef}
 					></div>
 				</div>
