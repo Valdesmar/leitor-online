@@ -119,7 +119,7 @@ function ReaderPage() {
 
 	return (
 		<div className="flex flex-row size-full min-h-screen">
-			<NavVertical MyColor={MyColor} changeMyColor={changeMyColor} className="text-red"></NavVertical>
+			<NavVertical MyColor={MyColor} changeMyColor={changeMyColor} className=""></NavVertical>
 			<div className={`flex flex-col ${MyColor.innerTextColor} w-full font-medium `}>
 				<div className={`flex flex-row ${MyColor.outerColorBG} ${MyColor.outerTextColor} divide-x divide-cadet-gray sticky top-0`}>
 					<button className="flex-1 justify-center py-2 dark:hover:bg-chamoisee" ref={prevPageBtnRef} disabled>
