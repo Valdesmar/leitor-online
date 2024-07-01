@@ -35,7 +35,7 @@ function NavVertical({ MyColor, changeMyColor}) {
         <>
             {
                 isOpen ? 
-                    <div className={`h-screen max-h-screen
+                    <div className={`
                         flex flex-row justify-content
                         transition-transform transform 
                         ${ isOpen ? "translate-x-0 " : "-translate-x-3/4" }
@@ -48,7 +48,7 @@ function NavVertical({ MyColor, changeMyColor}) {
                                     </svg>
                                     <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Leitor Online</span>
                                 </Link>
-                                <div className="flex flex-col h-4/5">
+                                <div className="sticky top-0 flex flex-col ">
                                     <ul className="py-2 justify-end">
                                         <li>
                                             <Link to="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group">
@@ -67,10 +67,9 @@ function NavVertical({ MyColor, changeMyColor}) {
                                                 <span className="flex ms-3">Read</span>
                                             </Link>
                                         </li>
-                                    </ul>
-                                    <div className="flex-grow"></div>
-                                    <ul className="py-2">
-                                        <li className="">
+                                    {/* </ul> */}
+                                    {/* <ul className=""> */}
+                                        <li>
                                             <div onClick={openFirstModal} 
                                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group"
                                                 role="button">
@@ -80,7 +79,7 @@ function NavVertical({ MyColor, changeMyColor}) {
                                                     <span className="flex-1 ms-3">Hotkeys</span>
                                             </div>
                                         </li>
-                                        <li className="">
+                                        <li>
                                             <div onClick={openSecondModal} 
                                                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group"
                                                 role="button"
@@ -90,6 +89,7 @@ function NavVertical({ MyColor, changeMyColor}) {
                                         </li>
                                     </ul>
                                 </div>
+                                    {/* <div className="flex-grow py-80"></div> */}
                                 <Modal isOpen={isFirstModalOpen} onClose={closeFirstModal} BgColor={MyColor.outerColorBG}>
                                     <h2 className="text-xl font-medium mb-4 flex">Hotkeys</h2>
                                     {/* <p className="mb-4">Choose the theme you want to use</p> */}
@@ -117,7 +117,8 @@ function NavVertical({ MyColor, changeMyColor}) {
                                     {/* <p className="mb-4">Choose the theme you want to use</p> */}
                                     <ul>
                                         <li>
-                                            <button onClick={() => changeMyColor({outerColorBG: "bg-jackobean", 
+                                            <button onClick={() => changeMyColor({
+                                                outerColorBG: "bg-jackobean", 
                                                 innerColorBG: "bg-rosetaupe", 
                                                 outerTextColor: "text-white", 
                                                 innerTextColor: "text-white"
@@ -126,10 +127,11 @@ function NavVertical({ MyColor, changeMyColor}) {
                                             </button>
                                         </li>
                                         <li>
-                                            <button onClick={() => changeMyColor({outerColorBG: "bg-neutral-950", 
-                                                innerColorBG:"bg-neutral-50", 
+                                            <button onClick={() => changeMyColor({
+                                                outerColorBG: "bg-slate-900", 
+                                                innerColorBG:"bg-slate-200", 
                                                 outerTextColor: "text-white", 
-                                                innerTextColor: "text-neutral-950"
+                                                innerTextColor: "text-slate-900"
                                                 })} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
                                                 <span className="flex-1 ms-3 whitespace-nowrap">Black</span>
                                             </button>

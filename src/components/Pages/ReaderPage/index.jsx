@@ -135,14 +135,14 @@ function ReaderPage() {
 
 				<div className={`flex flex-row justify-center py-2 ${MyColor.innerColorBG} ${MyColor.innerTextColor} border-1 h-full`}>
 					<div
-					className={`px-4 text-2xl
-					whitespace-pre-line font-light
-					tracking-normal
-					shadow-lg shadow-taupe
-					max-w-4xl
-					text-wrap
-					`}
-					ref={fileContentRef}
+						className={`px-4 text-2xl
+						whitespace-pre-line font-light
+						tracking-normal
+						shadow-lg shadow-taupe
+						max-w-4xl
+						text-wrap
+						`}
+						ref={fileContentRef}
 					></div>
 				</div>
 			</div>
