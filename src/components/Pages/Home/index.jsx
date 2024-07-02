@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
     return (
-        <main className="min-h-screen min-w-screen">
+        <section className="min-h-screen min-w-screen">
             <div className="h-screen text-white font-semibold flex items-center justify-center pb-36">
                 <div className="flex flex-col items-center justify-center text-center">
 
@@ -21,7 +21,7 @@ function Home() {
 
                 </div>
             </div>
-        </main>
+        </section>
     );
 }
 
