@@ -13,9 +13,11 @@ const Input = (props) => {
             <label className="mb-2 text-lg font-bold">
                 {props.label}
             </label>
-            <input value={props.value} 
+            <input 
+                value={props.value} 
                 placeholder={placeholderChanged} 
                 required={props._required}
+                type={props.type}
                 onChange={whenTyped}
                 className={
                     `
@@ -37,7 +39,6 @@ const Input = (props) => {
                     // padding: 24px;
                     // box-sizing: border-box;
                 }
-            
             />
         </div>
     );
