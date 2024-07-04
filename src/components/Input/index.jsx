@@ -10,7 +10,7 @@ const Input = (props) => {
 
     return (   
         <div className="m-6">
-            <label className="mb-2 text-2xl">
+            <label className="mb-2 text-lg font-bold">
                 {props.label}
             </label>
             <input value={props.value} 
@@ -19,12 +19,15 @@ const Input = (props) => {
                 onChange={whenTyped}
                 className={
                     `
+                    p-1
                     mb-1
-                    bg-neutral-50
-                    text-neutral-950
-                    font-semibold
-                    shadow-md
-                    shadow-neutral-50
+                    bg-slate-700
+                    text-neutral-50
+                    font-medium 
+                    opacity-80
+                    shadow-lg
+                    shadow-slate-800
+                    rounded-md
                     ` 
                     // background-color: "#fff";
                     // box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.06);
