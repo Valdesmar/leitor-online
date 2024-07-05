@@ -36,12 +36,11 @@ function NavVertical({ MyColor, changeMyColor}) {
             {
                 isOpen ? 
                     <div className={`
-                        h-screen
                         flex flex-row justify-content
                         transition-transform transform 
                         ${ isOpen ? "translate-x-0 " : "-translate-x-3/4" }
                         `}>
-                        <div className={`px-4 py-4 ${MyColor.outerColorBG} dark:${MyColor.outerColorBG}`}>
+                        <div className={`h-full px-4 py-4 ${MyColor.outerColorBG} dark:${MyColor.outerColorBG}`}>
                                 {/* transition-transform transform ${ isOpen ? "translate-x-0 " : "-translate-x-full" }  */}
                                 <Link to="/" className="flex items-center ps-2.5 mb-5">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-6 m-1">
@@ -72,7 +71,7 @@ function NavVertical({ MyColor, changeMyColor}) {
                                     {/* <ul className=""> */}
                                         <li>
                                             <div onClick={openFirstModal} 
-                                                className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group"
+                                                className="p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-chamoisee group"
                                                 role="button">
                                                     {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="size-5">
                                                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
@@ -120,21 +119,41 @@ function NavVertical({ MyColor, changeMyColor}) {
                                         <li>
                                             <button onClick={() => changeMyColor({
                                                 outerColorBG: "bg-jackobean", 
-                                                innerColorBG: "bg-rosetaupe", 
+                                                innerColorBG: "bg-black-olive", 
                                                 outerTextColor: "text-white", 
                                                 innerTextColor: "text-white"
                                                 })} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
-                                                <span className="flex-1 ms-3 whitespace-nowrap">Brown</span>
+                                                <span className="flex-1 ms-3 whitespace-nowrap">Vintage</span>
                                             </button>
                                         </li>
                                         <li>
                                             <button onClick={() => changeMyColor({
                                                 outerColorBG: "bg-slate-900", 
-                                                innerColorBG:"bg-slate-200", 
+                                                innerColorBG: "bg-slate-200", 
                                                 outerTextColor: "text-white", 
                                                 innerTextColor: "text-slate-900"
                                                 })} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
                                                 <span className="flex-1 ms-3 whitespace-nowrap">Black</span>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => changeMyColor({
+                                                outerColorBG: "bg-yankees-blue", 
+                                                innerColorBG: "bg-independence", 
+                                                outerTextColor: "text-white", 
+                                                innerTextColor: "text-white"
+                                                })} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
+                                                <span className="flex-1 ms-3 whitespace-nowrap">Blue</span>
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button onClick={() => changeMyColor({
+                                                outerColorBG: "bg-test1", 
+                                                innerColorBG: "bg-test2", 
+                                                outerTextColor: "text-white", 
+                                                innerTextColor: "text-white"
+                                                })} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white group"> 
+                                                <span className="flex-1 ms-3 whitespace-nowrap">Test</span>
                                             </button>
                                         </li>
                                     </ul>

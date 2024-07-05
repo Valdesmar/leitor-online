@@ -22,6 +22,12 @@ export default {
         'rosetaupe': '#926765',
         'testText': '#3E362E',
         'testBg': '#6d6875',
+        'black-olive': '#433e3f',
+        'ashgreen': '#4f3130',
+        'yankees-blue': '#22223b',
+        'independence': '#4a4e69',
+        'test2': '#7c162e',
+        'test1': '#110e1b',
       }
     },
   },

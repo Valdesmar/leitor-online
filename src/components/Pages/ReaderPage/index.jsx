@@ -6,7 +6,7 @@ import NavVertical from "../../NavVertical";
 function ReaderPage() {
 	const [MyColor, setMyColor] = useState({
 		outerColorBG: "bg-jackobean", 
-		innerColorBG: "bg-rosetaupe", 
+		innerColorBG: "bg-black-olive", 
 		outerTextColor: "text-white",
 		innerTextColor: "text-white",
 	});
