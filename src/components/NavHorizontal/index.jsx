@@ -15,7 +15,7 @@ function NavHorizontal () {
             </div>
 
             <div className="hidden lg:flex lg:flex-1 lg:gap-x-8 lg:justify-end">
-                <Link to="#" className=" leading-6">Log in</Link>
+                <Link to="/login" className=" leading-6">Log in</Link>
                 <Link to="/signup" className="px-2 leading-6 bg-rosetaupe shadow-lg shadow-rosetaupe border-2 rounded-lg border-rosetaupe">Sign up</Link>
             </div>
         </nav>

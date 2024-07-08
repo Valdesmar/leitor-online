@@ -8,6 +8,7 @@ import FilePage from './components/Pages/FilePage';
 import NavVertical from './components/NavVertical';
 import ReaderPage from './components/Pages/ReaderPage';
 import SignUpPage from './components/Pages/SignUpPage';
+import LoginPage from './components/Pages/LoginPage';
 
 
 function App() {
@@ -20,6 +21,15 @@ function App() {
           <>
             <NavHorizontal />
             <Home />
+          </> 
+        } 
+      />
+      <Route 
+        path="/login" 
+        element={ 
+          <>
+            <NavHorizontal />
+            <LoginPage />
           </> 
         } 
       />

@@ -9,7 +9,7 @@ const Input = (props) => {
     }
 
     return (   
-        <div className="m-6">
+        <div className="flex flex-col m-6">
             <label className="mb-2 text-lg font-bold">
                 {props.label}
             </label>
